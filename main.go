@@ -2,6 +2,7 @@ package main
 
 import (
 	"github.com/BriceLucifer/CommandLine/color"
+	"github.com/BriceLucifer/CommandLine/readline"
 	// "github.com/BriceLucifer/CommandLine/loading"
 )
 
@@ -12,4 +13,6 @@ func main() {
 	// color.ClearScreen()
 	color.ColorPrint(color.BackgroundBlue, "background color")
 	color.ColorPrint(color.BackgroundBrightMagenta, "aaaaaaaaa %d\n", 12);
+	readline.Loop(">> ", "./history")
+
 }
