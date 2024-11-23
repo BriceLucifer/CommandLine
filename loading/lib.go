@@ -7,10 +7,12 @@ import (
 	"time"
 )
 
-func Loading() {
+/// a loading bar
+
+func LoadingBar() {
 	fmt.Println("\u001b[33m✨ Loading... Please wait! ✨")
 
-	// 显示一个长度为 50 的进度条
+	// length is 50
 	totalSteps := 50
 	for i := 0; i <= 100; i++ {
 		time.Sleep(time.Millisecond * 100) // 模拟延迟
@@ -19,7 +21,7 @@ func Loading() {
 		// 构建进度条
 		progressBar := "\u001b[36m["
 
-		// 填充进度条的完成部分，使用 Emoji 代替 "»"
+		// 填充进度条的完成部分"»"
 		for j := 0; j < progress; j++ {
 			progressBar += "\u001b[32m»" // 
 		}
