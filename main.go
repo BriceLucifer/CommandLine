@@ -8,6 +8,8 @@ import (
 func main() {
 	// loading.Loading()
 	color.ColorPrint(color.Red, "hello world\n")
-	color.ColorPrintln(color.BrightYellow, "I dont Know %d", 12)
-	color.ClearScreen()
+	color.ColorPrint(color.BrightYellow, "I dont know %d\n", 12)
+	// color.ClearScreen()
+	color.ColorPrint(color.BackgroundBlue, "background color")
+	color.ColorPrint(color.BackgroundBrightMagenta, "aaaaaaaaa %d\n", 12);
 }

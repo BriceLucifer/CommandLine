@@ -50,14 +50,6 @@ func ColorPrint(color Color, format string, args ...interface{}) {
 	fmt.Printf("%s%s%s", color, message, Reset)
 }
 
-
-/// Color Print with line
-func ColorPrintln(color Color, format string, args ...interface{}) {
-	message := fmt.Sprintln(format, args)
-	fmt.Printf("%s%s%s", color, message, Reset)
-}
-
-
 /// Clear the Screen
 func ClearScreen() {
 	fmt.Printf("\033[H\033[2J")
