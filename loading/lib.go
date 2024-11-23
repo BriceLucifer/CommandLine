@@ -40,3 +40,13 @@ func LoadingBar() {
 	// 显示完成信息
 	fmt.Println("\n\u001b[32m🎉 Loading Complete! 🎉")
 }
+
+
+func Timer(color string) {
+	for {
+		writer := bufio.NewWriter(os.Stdout) 
+		time.Sleep(100 * time.Millisecond)
+		fmt.Fprintf(writer, "\u001b[1000D%s%s",color,time.Now().Format("2006-01-02 15:04:05")) 
+		writer.Flush()
+	}
+}

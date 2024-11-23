@@ -3,12 +3,14 @@ package readline
 import (
 	"fmt"
 	"io"
+	"os"
+	"os/exec"
 	"strings"
 
 	"github.com/chzyer/readline"
 )
 
-func Loop(promt string, history_file string) {
+func Loop(promt string, history_file string, shell string) {
 	config := &readline.Config{
 		Prompt:      promt,
 		HistoryFile: history_file,
@@ -46,6 +48,20 @@ func Loop(promt string, history_file string) {
 
 		if input == "exit" {
 			return
+		}
+
+		if input == shell {
+			cmd := exec.Command(shell)
+
+			cmd.Stdin = os.Stdin
+			cmd.Stdout = os.Stdout
+			cmd.Stderr = os.Stderr
+
+			err = cmd.Run()
+			if err != nil {
+				fmt.Printf("Error starting %s shell %v\n", shell,err)
+				return
+			}
 		}
 
 		// Save command to history
