@@ -7,7 +7,9 @@ import (
 )
 
 func main() {
-	fmt.Printf("hello")
-	cursor.ScreenClear(2)
-	
+	cursor.Move(cursor.NEXT_LINE, 3)
+	fmt.Printf("------------\n")
+	cursor.Move(cursor.PREV_LINE, 1)
+	fmt.Printf("hello\n")
+	cursor.Move(cursor.DOWN, 4)
 }

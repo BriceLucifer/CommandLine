@@ -1,6 +1,9 @@
 package cursor
 
-import "fmt"
+import (
+	"fmt"
+	"os"
+)
 
 // Common ESC character
 const ESC = "\u001b"
@@ -38,53 +41,71 @@ func Move(direction string, steps int) {
 		NEXT_LINE: true, PREV_LINE: true,
 	}
 	if !validDirections[direction] {
-		fmt.Printf("Invalid direction: %s\n", direction)
+		fmt.Printf("Invalid direction: %s. Allowed: UP, DOWN, RIGHT, LEFT, NEXT_LINE, PREV_LINE\n", direction)
 		return
 	}
-	if steps < 0 {
-		steps = 0
+	if steps <= 0 {
+		fmt.Println("Steps must be greater than 0")
+		return
 	}
 	fmt.Printf("%s[%d%s", ESC, steps, direction)
+	os.Stdout.Sync()
 }
 
-// Position set: moves cursor to row n and column m
+// PositionSet moves the cursor to the specified row and column.
 func PositionSet(row int, column int) {
-	position := fmt.Sprintf("%s[%d;%d%s", ESC, row, column, SET_POSITION)
-	fmt.Printf(position)
+	if row < 1 || column < 1 {
+		fmt.Println("Row and column must be greater than 0")
+		return
+	}
+	fmt.Printf("%s[%d;%d%s", ESC, row, column, SET_POSITION)
+	os.Stdout.Sync()
 }
 
-// Column set
+// ColumnSet sets the cursor to the specified column.
 func ColumnSet(columns int) {
-	column := fmt.Sprintf("%s[%d%s", ESC, columns, SET_COLUMN)
-	fmt.Printf(column)
+	if columns < 1 {
+		fmt.Println("Columns must be greater than 0")
+		return
+	}
+	fmt.Printf("%s[%d%s", ESC, columns, SET_COLUMN)
+	os.Stdout.Sync()
 }
 
-// Clear screen
+// ScreenClear clears the screen based on the mode (0, 1, 2).
 func ScreenClear(n int) {
 	if n < 0 || n > 2 {
-		n = 2
+		fmt.Println("Invalid value for clearing. Use 0 (right), 1 (left), or 2 (entire).")
+		return
 	}
 	fmt.Printf("%s[%d%s", ESC, n, CLEAR_SCREEN)
+	os.Stdout.Sync()
 }
 
-// Clear line
+// LineClear clears the current line based on the mode (0, 1, 2).
 func LineClear(n int) {
 	if n < 0 || n > 2 {
-		n = 2
+		fmt.Println("Invalid value for clearing. Use 0 (right), 1 (left), or 2 (entire).")
+		return
 	}
 	fmt.Printf("%s[%d%s", ESC, n, CLEAR_LINE)
+	os.Stdout.Sync()
 }
 
-// Reset cursor to home
+// ResetCursor resets the cursor to the home position (row 1, column 1).
 func ResetCursor() {
 	fmt.Printf("%s[H", ESC)
+	os.Stdout.Sync()
 }
 
-// Save and restore cursor position
+// SaveCursor saves the current cursor position.
 func SaveCursor() {
-	fmt.Printf("%s7", ESC)
+	fmt.Printf("%s[s", ESC) // Alternatively, ESC+"7"
+	os.Stdout.Sync()
 }
 
+// RestoreCursor restores the cursor to the last saved position.
 func RestoreCursor() {
-	fmt.Printf("%s8", ESC)
+	fmt.Printf("%s[u", ESC) // Alternatively, ESC+"8"
+	os.Stdout.Sync()
 }
