@@ -2,5 +2,5 @@ all:
 	go build && ./CommandLine
 test:
 	go test ./...
-clear:
+clean:
 	rm -rf ./history ./CommandLine

@@ -38,7 +38,7 @@ func LoadingBar() {
 	}
 
 	// 显示完成信息
-	fmt.Println("\n\u001b[32m🎉 Loading Complete! 🎉")
+	fmt.Println("\n\u001b[32m🎉 Loading Complete! 🎉\u001b[0m")
 }
 
 func Timer(color string) {

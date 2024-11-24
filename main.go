@@ -4,6 +4,8 @@ import (
 	"fmt"
 
 	"github.com/BriceLucifer/CommandLine/cursor"
+	"github.com/BriceLucifer/CommandLine/loading"
+	"github.com/BriceLucifer/CommandLine/readline"
 )
 
 func main() {
@@ -11,5 +13,12 @@ func main() {
 	fmt.Printf("------------\n")
 	cursor.Move(cursor.PREV_LINE, 1)
 	fmt.Printf("hello\n")
-	cursor.Move(cursor.DOWN, 4)
+	fmt.Printf("xxxxxxxxxx\n--------\n-----xxxxxxddddddddd-\n")
+	cursor.Move(cursor.UP, 1)
+	cursor.Move(cursor.LEFT, 100)
+	fmt.Printf("testing\n")
+
+
+	loading.LoadingBar()
+	readline.Loop(">> ", "./history")
 }
