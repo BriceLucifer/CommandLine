@@ -41,7 +41,6 @@ func LoadingBar() {
 	fmt.Println("\n\u001b[32m🎉 Loading Complete! 🎉")
 }
 
-
 func Timer(color string) {
 	for {
 		writer := bufio.NewWriter(os.Stdout) 
